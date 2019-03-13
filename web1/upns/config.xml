@@ -1,0 +1,78 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <!-- listen 포트 -->
+    <port>1883</port>
+    <locale>kr_K</locale>
+	<!-- 전송 정보 수신 포트 -->
+	<cache_port>18883</cache_port>
+    <ssl_port>8883</ssl_port>
+	<monitor_port>18880</monitor_port>
+
+    <!-- 보안을 위해 접속요청 클라이언트인증을 활성화 한다.-->
+    <use_chk_password>Y</use_chk_password>
+
+	<!-- 전송 정보 공유 서버 지정 자기서버는 제외 다른UPNS 서버 지정. 쉼표로 구분-->
+	<broker_server_ip>172.20.34.41</broker_server_ip>
+	
+	<!-- 발송 정보 캐쉬 공유 주기 1000ms  -->
+    <cache_replication_interval>1000</cache_replication_interval>
+        
+    <!--!!! 반드시 확인. 세션 idle 타임아웃 (분) ping: 1이면 3분, ping 5분이면 기본값 :8 분 -->
+    <idle_timeout_min>8</idle_timeout_min>
+    
+    <!-- 메시지 처리 쓰레드 카운트-->
+    <protocol_thread_count>5</protocol_thread_count>
+
+    <!-- Message 큐 사이즈 -->
+    <max_message_queue_size>1000000</max_message_queue_size>
+    
+	<!-- 메시지 발송 결과 전송 서버 지정 ip, port -->    
+    <log_server_ip>0.0.0.0</log_server_ip>
+    <log_server_port>10000</log_server_port>
+    
+    <!-- 메시지 사이즈 제한 (byte) MaxSize 268435455 bytes, 기본값 : 제한 없음 -->
+    <message_size_limit>0</message_size_limit>
+    
+    <!-- offline 메시지 전송 주기(초) 기본값  : 0 사용 안함 -->
+    <resend_interval>0</resend_interval>
+    
+    <!-- 메시지 큐 사이즈 제한 기본값 : 0  사용안함 -->
+    <queue_size>0</queue_size>
+    
+    <!-- 사용자당 메시지 보관 갯수 -->
+    <cache_user_msg_count>10</cache_user_msg_count>
+    
+    <!-- 결과 로그 전달 주기 10s  -->
+    <result_log_send_interval>10</result_log_send_interval>
+    
+    <!-- 오프라인 메시지 전달 주기 s(현재 미구현) -->
+	<offline_send_interval>60</offline_send_interval>
+    
+	<!-- 모니터링 정보 출력 간격 30s -->
+    <monitor_print_interval>60</monitor_print_interval>
+
+    <!-- 유병희 : 리시버의 수신확인, 실패 처리 URL 호출 여부. N일경우 아래의 설정 모두 소용없음-->
+    <receiver_sent_call_yn>Y</receiver_sent_call_yn>
+    <!-- 유병희 : ehcache.xml에서 설정한 timeToLiveSeconds 시간 초과시 발송 실패처리하는 리시버API URL-->
+    <receiver_fail_msg_url>http://210.96.194.39/rcv_fail_msg_ack.ctl</receiver_fail_msg_url>
+   <!-- 유병희 : 리시버 보낸 메세지 수신확인 URL-->
+    <receiver_sent_msg_url>http://210.96.194.39/rcv_register_sent_ack.ctl</receiver_sent_msg_url>
+    <!-- 수신확인 Sleep time-->
+    <receiver_sent_sleep_miltime>10</receiver_sent_sleep_miltime>
+
+    <!-- Ping 수신시 Off메세지 확인하여 존재시  Off메세지 발송. 물론,구독신청시에도 offmessage 확인 하여 보냄.-->
+    <ping_rev_send_offmessage>N</ping_rev_send_offmessage>
+    
+    <!-- DISK에 저장된 EHCACHE 메시지의 만료 체크 주기(분단위) 권장 1시간 (60분) 0이면 사용 안함 -->
+    <!--   
+			ehcache.xml 내에 아래와 같이 설정되더 있을때 적용 필요
+			<cache name="offmessage"
+			overflowToDisk="true"
+			diskPersistent="true"	/> 
+	-->
+    <check_disk_offline_message_interval>60</check_disk_offline_message_interval>
+    
+     <!-- 만료된 Offline Message 의 에러메시지 내용 -->
+    <expired_offline_message_error_message>Offline message expired.</expired_offline_message_error_message>
+    
+</configuration>

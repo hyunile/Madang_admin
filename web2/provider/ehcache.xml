@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ehcache>
+	<diskStore path="user.dir/cache" />
+	<!--FCM XMPP 프로토콜 디스크 저장방법. 속도가 느려질 수 있다. -->
+	<cache name="xmppsentmsg"
+		   maxEntriesLocalHeap="50000"
+		   eternal="false"
+		   overflowToDisk="false"
+		   diskPersistent="false"
+		   diskExpiryThreadIntervalSeconds="3600"
+		   timeToLiveSeconds="3600"
+		   memoryStoreEvictionPolicy="FIFO"/>
+
+	<!--AOM메세지 디스크 저장방법. 속도가 느려질 수 있다. -->
+	<cache name="aomsentmsg"
+			maxEntriesLocalHeap="10000"
+			eternal="false"
+			overflowToDisk="false"
+			diskPersistent="false"
+			diskExpiryThreadIntervalSeconds="60"
+			timeToLiveSeconds="60"
+			memoryStoreEvictionPolicy="FIFO"/>
+</ehcache>

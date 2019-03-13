@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration scan="true" scanPeriod="60 seconds">
+    <appender name="SERVER" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <prudent>true</prudent>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+                <fileNamePattern>/logs/upns-sent/logFile.%d{yyyy-MM-dd}.log</fileNamePattern>
+                <maxHistory>30</maxHistory>
+        </rollingPolicy>
+        <encoder>
+                <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %class - %msg%n</pattern>
+        </encoder>
+    </appender>
+    <appender name="REVACK" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <prudent>true</prudent>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>/logs/upns-sent/revAck.%d{yyyy-MM-dd-HH}.log</fileNamePattern>
+            <maxHistory>48</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} - %msg%n</pattern>
+        </encoder>
+    </appender>
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <layout class="ch.qos.logback.classic.PatternLayout">
+                <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %class - %msg%n</pattern>
+        </layout>
+    </appender>
+
+    <logger name="revack" level="INFO">
+        <appender-ref ref="REVACK" />
+    </logger>
+    <logger name="server" level="DEBUG">
+            <appender-ref ref="SERVER" />
+    </logger>
+
+    <logger name="query" level="INFO">
+        <appender-ref ref="SERVER"/>
+    </logger>
+<!--
+    <root level="DEBUG">
+        <appender-ref ref="STDOUT" />
+    </root>
+    -->
+</configuration>
+        

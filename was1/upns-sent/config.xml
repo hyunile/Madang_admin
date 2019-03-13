@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <!--SENT_LISTENER을 여래개 띄울때 변경하세요.-->
+    <listener>
+        <id>SYS_SENT_LISTENER1</id>
+        <label>USL_1</label>
+        <subscribe>UPNS-SENT</subscribe>
+        <dbUpSleeptime>30</dbUpSleeptime>
+        <workerThreadCnt>3</workerThreadCnt>
+    </listener>
+
+    <!-- listen 포트 -->
+    <upns>
+        <protocol>tcp</protocol>
+        <ip>172.20.34.40,172.20.34.41</ip>
+        <port>1883,1883</port>
+        <pingterm>1</pingterm>
+        <reconnectCheckTime>60</reconnectCheckTime>
+    </upns>
+
+    <dbtype>oracle</dbtype>
+    <dbcp_enc>N</dbcp_enc>
+    <jdbc>
+        <driverClassName>oracle.jdbc.OracleDriver</driverClassName>
+        <url>jdbc:oracle:thin:@(DESCRIPTION=(LOAD_BALANCE=OFF)(FAILOVER=ON)(ADDRESS=(PROTOCOL=TCP)(HOST=172.20.46.74)(PORT=2525))(ADDRESS=(PROTOCOL=TCP)(HOST=172.20.46.73)(PORT=2525))(CONNECT_DATA=(SERVICE_NAME=PMDMP)))</url>
+        <username>mdmpapp</username>
+        <password>ikep#$app!@</password>
+        <minConnectionsPerPartition>0</minConnectionsPerPartition>
+        <maxConnectionsPerPartition>10</maxConnectionsPerPartition>
+        <idleMaxAgeInSeconds>3600</idleMaxAgeInSeconds>
+        <idleConnectionTestPeriodInMinutes>5</idleConnectionTestPeriodInMinutes>
+        <connectionTestStatement>select 1 from dual</connectionTestStatement>
+    </jdbc>
+
+</configuration>
